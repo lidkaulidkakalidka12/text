@@ -13,22 +13,21 @@ public class StringCollection {
             long occurrencesWords = listText.stream().filter(w -> w.equals(word)).count();
             mapWordsWithOccurrencesWord.put(word, occurrencesWords);
         }
-        for (Map.Entry e : mapWordsWithOccurrencesWord.entrySet()) {
-            String s = (String) e.getKey();
-            if (s.toUpperCase().charAt(0) == firstLetter) {
+        for (Map.Entry<String,Long> e : mapWordsWithOccurrencesWord.entrySet()) {
+            if (e.getKey().toUpperCase().charAt(0) == firstLetter) {
                 finalResult.append("    ")
                         .append(e.getKey())
                         .append(" ")
                         .append(e.getValue())
                         .append("\n");
             } else {
-                finalResult.append(s.toUpperCase().charAt(0))
+                finalResult.append(e.getKey().toUpperCase().charAt(0))
                         .append(" : ")
                         .append(e.getKey())
                         .append(" ")
                         .append(e.getValue())
                         .append("\n");
-                firstLetter = s.toUpperCase().charAt(0);
+                firstLetter = e.getKey().toUpperCase().charAt(0);
             }
         }
         return finalResult;
